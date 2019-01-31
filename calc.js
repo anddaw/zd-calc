@@ -42,6 +42,7 @@ function set_operation(op) {
 function execute() {
     display.value = calc_operation(previous_value, parseFloat(display.value));
     clear_display_flag = true;
+    calc_operation = (x, y) => {return y};
 }
 
 function addButton(innerText) {
@@ -53,6 +54,14 @@ function addButton(innerText) {
     button.addEventListener('click', () => {updateDisplay(innerText);});
 }
 
+function memoryAdd() {
+    memory_value += parseFloat(display.value)
+}
+
+function memoryRecall() {
+    display.value = memory_value;
+    clear_display_flag = true;
+}
 
 for (let i = 1; i <= 9; ++i) addButton(i);
 addButton(0);
@@ -60,7 +69,6 @@ addButton('.');
 
 document.getElementById('btn-ac')
     .addEventListener('click', () => {init()});
-
 document.getElementById('btn-add').addEventListener("click", () => {
     set_operation((x, y) => {return x + y})
 });
@@ -73,8 +81,8 @@ document.getElementById('btn-mul').addEventListener("click", () => {
 document.getElementById('btn-div').addEventListener("click", () => {
     set_operation((x, y) => {return x / y})
 });
-
 document.getElementById("btn-exe").addEventListener("click", execute);
-
+document.getElementById("btn-mp").addEventListener("click", memoryAdd);
+document.getElementById("btn-mr").addEventListener("click", memoryRecall);
 init();
 
