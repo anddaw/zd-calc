@@ -53,8 +53,9 @@ p {
 
 .calc-container {
     width: 320px;
-    height: 400px;
+    height: 215px;
     background-color: green;
+	margin: auto;
 }
 
 #display-field {
